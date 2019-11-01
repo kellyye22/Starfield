@@ -1,10 +1,8 @@
 Particle[] parts = new Particle[100];
-boolean start = false;
-double startX;
-double startY;
+
 void setup()
 {
-	size(400,400);
+	size(800,800);
   background(0);
   for(int i = 0; i<parts.length;i++){
     parts[i] = new Particle();
@@ -12,22 +10,18 @@ void setup()
   }
 }
 
-void mousePressed(){
-  start = true;
-  startX = mouseX;
-  startY = mouseY;  
-}
-
-void draw()
-{
-  if(start == true){
-  	for(int i = 0; i < parts.length; i++){
-      parts[i].move();
-      parts[i].show();
+void draw(){
+	for(int i = 0; i < parts.length; i++){
+    parts[i].move();
+    parts[i].show();
    }
-  }
 }
 
+void mouseClicked(){
+  for(int i = 0; i < parts.length; i++){
+    parts[i].reset();
+   }
+}
 class Particle
 {
   double myX, myY, mySpeed, myAngle;
@@ -51,6 +45,13 @@ class Particle
     fill(myColor);
     ellipse((float)myX, (float)myY, 10, 10);
   }
+  
+  void reset(){
+    myX = mouseX;
+    myY = mouseY;
+    myAngle = Math.random()*2*Math.PI;
+    mySpeed = Math.random()*2;
+  }
 }
 
 class OddballParticle extends Particle //inherits from Particle
@@ -70,5 +71,12 @@ class OddballParticle extends Particle //inherits from Particle
   void show(){
     fill(myColor);
     ellipse((float)myX, (float)myY, 30, 30);
+  }
+  
+  void reset(){
+    myX = mouseX;
+    myY = mouseY;
+    myAngle = Math.random()*2*Math.PI;
+    mySpeed = Math.random()*2;
   }
 }
