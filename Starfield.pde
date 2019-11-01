@@ -2,7 +2,7 @@ Particle[] parts = new Particle[100];
 
 void setup()
 {
-	size(800,800);
+	size(600,600);
   background(0);
   for(int i = 0; i<parts.length;i++){
     parts[i] = new Particle();
